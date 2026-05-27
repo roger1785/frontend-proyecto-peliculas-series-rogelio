@@ -25,22 +25,7 @@ function MoviesPage() {
     });
   }
 
-  // Pelayo
-  // const filteredMovies = movies.filter((movie) => {
-  //   const matchesGenre =
-  //     selectedGenre == "Todos" || movie.genre == selectedGenre;
-
-  //   return matchesGenre;
-  // });
-
-  // const matchSearch =
-  //   vehicle.marca.toLowerCase().includes(search.toLowerCase()) ||
-  //   vehicle?.modelo?.toLowerCase().includes(search.toLowerCase());
-  // const matchCombustible = combustibleFilter
-  //   ? vehicle.combustible === combustibleFilter
-  //   : true;
-  // return matchSearch && matchCombustible;
-
+ 
   const sortedMovies = [...filteredMovies].sort((a, b) => {
     if (sortBy == "az") {
       if (a.title < b.title) return -1;
@@ -104,18 +89,7 @@ function MoviesPage() {
           <option value="oldest">Más viejo</option>
         </select>
 
-        {/* {hasResults ? (
-            <MovieList movies={filteredMovies} />
-          ) : (
-            <p className="empty-message">
-              No encontramos resultados para la busqueda
-            </p>
-          )} */}
-
-        {/* Pelayo */}
-        {/* <MovieList movies={filteredMovies} /> */}
-
-        {/* Sergio */}
+       
         {search && !hasResults && (
           <p className="empty-message">
             No encontramos resultados para la busqueda
