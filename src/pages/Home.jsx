@@ -1,10 +1,10 @@
 import { movies } from "../data/movies";
 import MovieList from "../components/MovieList";
-
+import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   const featuredMovies = movies.filter((movie) => movie.featured);
-
   const newMovies = movies.slice(0, 3); // 3 primeras
 
   return (
@@ -18,9 +18,19 @@ function Home() {
             Explora películas y series, consulta sus detalles y administra el
             contenido desde un panel privado.
           </p>
-          <a className="button" href="#">
+
+          <Link className="button" to="/movies">
             Ver catálogo
-          </a>
+          </Link>
+
+          <button
+            className="button"
+            type="button"
+            onClick={() => navigate("/movies")}
+          >
+            Ver catálogo
+          </button>
+
         </div>
       </section>
 
