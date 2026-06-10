@@ -1,7 +1,11 @@
 import { useEffect, useState, useRef } from "react";
-// import { movies as initialMovies } from "../../data/movies";
 import MovieForm from "../../components/MovieForm";
-import { createMovie, getMovies } from "../../services/movieService";
+import {
+  createMovie,
+  deleteMovie,
+  getMovies,
+  updateMovie,
+} from "../../services/movieService";
 
 function AdminMoviesPage() {
   const [showForm, setShowForm] = useState(false);
@@ -40,41 +44,41 @@ function AdminMoviesPage() {
     }
   };
 
-  const handleDeleteMovie = (id) => {
-    // const confimed = confirm("¿Desea eliminar esta pelicula?");
+  const handleDeleteMovie = async (id) => {
+    try {
+      await deleteMovie(id);
 
-    // if (!confimed) {
-    //   return;
-    // }
+      const filteredMovies = movies.filter((movie) => movie._id != id);
 
-    const filteredMovies = movies.filter((movie) => movie.id != id);
-    setMovies(filteredMovies);
+      setMovies(filteredMovies);
+      setMovieToDelete(null);
 
-    setMovieToDelete(null);
-
-    setMessage("Pelicula eliminada correctamente");
+      setMessage("Pelicula eliminada correctamente");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
-  const handleUpdateMovie = (movieId, movieData) => {
-    const updatedMovies = movies.map((movie) => {
-      if (movie.id == movieId) {
-        const updatedMovie = {
-          ...movie,
-          ...movieData,
-        };
+  const handleUpdateMovie = async (movieId, movieData) => {
+    try {
+      const updatedMovie = await updateMovie(movieId, movieData);
 
-        return updatedMovie;
-      }
+      const updatedMovies = movies.map((movie) => {
+        if (movie._id == movieId) {
+          return updatedMovie;
+        }
 
-      return movie;
-    });
+        return movie;
+      });
 
-    setMovies(updatedMovies);
+      setMovies(updatedMovies);
+      setSelectedMovie(null);
+      setShowForm(false);
 
-    setSelectedMovie(null);
-    setShowForm(false);
-
-    setMessage("Pelicula actualizada correctamente");
+      setMessage("Pelicula actualizada correctamente");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   useEffect(() => {
@@ -201,7 +205,7 @@ function AdminMoviesPage() {
               <button
                 className="modal-button danger"
                 type="button"
-                onClick={() => handleDeleteMovie(movieToDelete.id)}
+                onClick={() => handleDeleteMovie(movieToDelete._id)}
               >
                 Eliminar
               </button>

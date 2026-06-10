@@ -1,28 +1,23 @@
-const API_URL = "http://localhost:3000/api/movies";
+const API_URL = import.meta.env.VITE_API_URL;
+
+const handleResponse = async (response) => {
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message || "Error en la petición");
+  }
+  return data;
+};
 
 export const getMovies = async () => {
   const response = await fetch(API_URL);
 
-  if (!response.ok) {
-    throw new Error("Error al obtener las peliculas");
-  }
-
-  const data = await response.json();
-
-  return data;
+  return handleResponse(response);
 };
 
 export const getMovieById = async (id) => {
   const response = await fetch(`${API_URL}/${id}`);
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Error al obtener la pelicula");
-  }
-
-  const data = await response.json();
-
-  return data;
+  return handleResponse(response);
 };
 
 export const createMovie = async (movieData) => {
@@ -32,10 +27,23 @@ export const createMovie = async (movieData) => {
     body: JSON.stringify(movieData),
   });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Error al crear la pelicula");
-  }
+  return handleResponse(response);
+};
 
-  return response.json();
+export const updateMovie = async (movieId, movieData) => {
+  const response = await fetch(`${API_URL}/${movieId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(movieData),
+  });
+
+  return handleResponse(response);
+};
+
+export const deleteMovie = async (movieId) => {
+  const response = await fetch(`${API_URL}/${movieId}`, {
+    method: "DELETE",
+  });
+
+  return handleResponse(response);
 };
