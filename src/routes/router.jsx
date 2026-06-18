@@ -9,6 +9,10 @@ import NotFoundPage from "../pages/NotFoundPage";
 import Adminlayout from "../layouts/AdminLayout";
 import DashboardPage from "../pages/admin/DashboardPage";
 import AdminMoviesPage from "../pages/admin/AdminMoviesPage";
+import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "../pages/LoginPage";
+
+import adminLoader from "../loaders/adminLoader";
 
 export const router = createBrowserRouter([
   {
@@ -35,15 +39,31 @@ export const router = createBrowserRouter([
     ],
   },
   {
+    path: "/auth",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+    ],
+  },
+  {
     path: "/admin",
     element: <Adminlayout />,
     children: [
       {
         index: true,
+        loader: adminLoader,
         element: <DashboardPage />,
       },
       {
         path: "movies",
+        loader: adminLoader,
         element: <AdminMoviesPage />,
       },
     ],

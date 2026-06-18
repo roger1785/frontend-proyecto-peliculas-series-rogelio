@@ -51,6 +51,15 @@ img {
   gap: 1rem;
 }
 
+.header-item button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
 .hero {
   padding: 5rem 0;
 }
@@ -546,6 +555,43 @@ img {
   display: grid;
   gap: 1rem;
   margin-bottom: 1rem;
+}
+
+/* Authentication */
+
+.auth-section {
+  padding: 40px 0 80px;
+}
+
+.auth-form {
+  max-width: 420px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  background-color: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.auth-form h1 {
+  margin: 0;
+}
+
+.auth-message {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border-radius: 0.75rem;
+  background-color: #14532d;
+  color: #ffffff;
+}
+
+.auth-error {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border-radius: 0.75rem;
+  background-color: #7f1d1d;
+  color: #ffffff;
 }
 
 /* Media queries */
