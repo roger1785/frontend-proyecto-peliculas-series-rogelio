@@ -5,7 +5,6 @@ import Home from "../pages/Home";
 import MoviePage from "../pages/MoviesPage";
 import MovieDetailPage from "../pages/MovieDetailPage";
 import NotFoundPage from "../pages/NotFoundPage";
-
 import Adminlayout from "../layouts/AdminLayout";
 import DashboardPage from "../pages/admin/DashboardPage";
 import AdminMoviesPage from "../pages/admin/AdminMoviesPage";
