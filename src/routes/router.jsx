@@ -6,8 +6,8 @@ import MoviePage from "../pages/MoviesPage";
 import MovieDetailPage from "../pages/MovieDetailPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import Adminlayout from "../layouts/AdminLayout";
-import DashboardPage from "../pages/admin/DashboardPage";
-import AdminMoviesPage from "../pages/admin/AdminMoviesPage";
+import DashboardPage from "../pages/Admin/DashboardPage";
+import AdminMoviesPage from "../pages/Admin/AdminMoviesPage";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 
